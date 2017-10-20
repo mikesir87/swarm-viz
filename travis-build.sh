@@ -12,6 +12,6 @@ if [ "$ARCH" == "amd64" ]; then
   docker build -t mikesir87/swarm-viz .
 fi
 
-if [ "$ARCH" == "s390" ]; then
+if [ "$ARCH" == "s390x" ]; then
   docker build -t mikesir87/swarm-viz --build-arg target=s390x/node:8.7 .
 fi

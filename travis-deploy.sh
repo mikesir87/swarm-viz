@@ -8,13 +8,13 @@ docker push "$image:linux-$ARCH"
 deploy() {
     sleep 15
     ./manifest-tool push from-args \
-        --platforms linux/amd64,linux/s390 \
+        --platforms linux/amd64,linux/s390x \
         --template "$image:OS-ARCH" \
         --target "$image:manifest-tool"
 
     echo "Pushing manifest $image:latest"
     ./manifest-tool push from-args \
-        --platforms linux/amd64,linux/s390 \
+        --platforms linux/amd64,linux/s390x \
         --template "$image:OS-ARCH" \
         --target "$image:latest-manifest-tool"
 }

@@ -2,11 +2,11 @@ sudo: required
 
 services:
  - docker
- 
+
 env:
   matrix:
     - ARCH=amd64
-    - ARCH=s390
+    - ARCH=s390x
 
 script:
   - ./travis-build.sh
