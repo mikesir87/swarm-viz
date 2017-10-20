@@ -42,7 +42,8 @@ if [ "$ARCH" == "amd64" ]; then
   ./docker version
   
   set -x
-  
+  source travis_retry.sh
+
   echo "Downloading manifest-tool"
   wget https://github.com/estesp/manifest-tool/releases/download/v0.7.0/manifest-tool-linux-amd64
   mv manifest-tool-linux-amd64 manifest-tool
