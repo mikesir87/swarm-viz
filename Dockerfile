@@ -1,5 +1,7 @@
+ARG node=node:8.7-alpine
+
 # Build frontend
-FROM node:8.7-alpine as frontend
+FROM $node as frontend
 WORKDIR /app
 COPY client/package.json .
 RUN npm install
@@ -7,7 +9,7 @@ COPY client/ .
 RUN npm run build
 
 # Build backend
-FROM node:8.7-alpine as backend
+FROM $node as backend
 WORKDIR /app
 COPY api/package.json .
 RUN npm install
@@ -15,7 +17,7 @@ COPY api/ .
 RUN npm run build
 
 # Put them together
-FROM node:8.7-alpine
+FROM $node
 EXPOSE 3000
 WORKDIR /app
 COPY api/package.json .
