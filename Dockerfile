@@ -5,7 +5,7 @@ ARG target=node:8.7-alpine
 FROM $node as frontend
 WORKDIR /app
 COPY client/package.json .
-RUN npm install
+RUN npm install --quiet
 COPY client/ .
 RUN npm run build
 
@@ -13,7 +13,7 @@ RUN npm run build
 FROM $node as backend
 WORKDIR /app
 COPY api/package.json .
-RUN npm install
+RUN npm install --quiet
 COPY api/ .
 RUN npm run build
 
@@ -21,7 +21,7 @@ RUN npm run build
 FROM $node as proddeps
 WORKDIR /app
 COPY api/package.json .
-RUN npm install --production
+RUN npm install --production --quiet
 COPY --from=backend /app/dist /app/dist
 COPY --from=frontend /app/build /app/build
 
