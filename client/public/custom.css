@@ -1,6 +1,9 @@
 .navbar { border-radius: 0; }
 .text-super-success { color: #00da00; }
 p { margin-bottom: 0; }
+.form-control-static {
+    word-break: break-all;
+}
 
 .empty-text {
     margin: 20px 0px 30px
