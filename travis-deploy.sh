@@ -40,7 +40,7 @@ travis_retry() {
 if [ "$ARCH" == "amd64" ]; then
   set +e
   echo "Waiting for other images $image:linux-s390"
-  until docker run --rm stefanscherer/winspector "$image:linux-s390"
+  until docker run --rm stefanscherer/winspector "$image:linux-s390x"
   do
     sleep 15
     echo "Trying again..."
