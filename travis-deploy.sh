@@ -19,6 +19,28 @@ deploy() {
         --target "$image:latest-manifest-tool"
 }
 
+# https://github.com/travis-ci/travis-build/blob/master/lib/travis/build/templates/header.sh
+travis_retry() {
+  local result=0
+  local count=1
+  while [ $count -le 3 ]; do
+    [ $result -ne 0 ] && {
+      echo -e "\n${ANSI_RED}The command \"$@\" failed. Retrying, $count of 3.${ANSI_RESET}\n" >&2
+    }
+    # ! { } ignores set -e, see https://stackoverflow.com/a/4073372
+    ! { "$@"; result=$?; }
+    [ $result -eq 0 ] && break
+    count=$(($count + 1))
+    sleep 1
+  done
+
+  [ $count -gt 3 ] && {
+    echo -e "\n${ANSI_RED}The command \"$@\" failed 3 times.${ANSI_RESET}\n" >&2
+  }
+
+  return $result
+}
+
 if [ "$ARCH" == "amd64" ]; then
   set +e
   echo "Waiting for other images $image:linux-s390"
@@ -42,7 +64,6 @@ if [ "$ARCH" == "amd64" ]; then
   ./docker version
   
   set -x
-  source travis_retry.sh
 
   echo "Downloading manifest-tool"
   wget https://github.com/estesp/manifest-tool/releases/download/v0.7.0/manifest-tool-linux-amd64
