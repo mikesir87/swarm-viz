@@ -1,0 +1,12 @@
+
+export const APP_INIT = "APP_INIT";
+export const SET_NODES = "SET_NODES";
+export const SET_SERVICES = "SET_SERVICES";
+export const SET_TASKS = "SET_TASKS";
+
+export const WS_CLOSED = "WS_CLOSED";
+export const WS_CONNECTED = "WS_CONNECTED";
+export const WS_MESSAGE = "WS_MESSAGE";
+
+export const DISPLAY_TASK_DETAILS_MODAL = "DISPLAY_TASK_DETAILS_MODAL";
+export const CLOSE_TASK_DETAILS_MODAL = "CLOSE_TASK_DETAILS_MODAL";

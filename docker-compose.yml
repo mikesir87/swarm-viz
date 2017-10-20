@@ -1,0 +1,37 @@
+version: "3.1"
+
+services:
+  proxy:
+    image: traefik:1.4-alpine
+    command: --web --docker --logLevel=DEBUG
+    ports:
+      - 80:80
+      - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  api:
+    image: node:8.7-alpine
+    command: sh -c "npm install && npm run dev"
+    working_dir: /app
+    volumes:
+      - ./api:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 3000:3000
+    labels:
+      - "traefik.backend=api"
+      - "traefik.frontend.rule=PathPrefix:/api/"
+      - "traefik.port=3000"
+
+  client:
+    image: node:8.7-alpine
+    command: sh -c "npm install && npm run dev"
+    working_dir: /app
+    volumes:
+      - ./client:/app
+    labels:
+      - "traefik.backend=client"
+      - "traefik.frontend.rule=PathPrefix:/"
+      - "traefik.port=3000"
+
