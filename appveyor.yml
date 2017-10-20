@@ -1,0 +1,10 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+
+build_script:
+  - ps: .\appveyor-build.ps1
+
+deploy_script:
+  - ps: >-
+      docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"
+      .\appveyor-deploy.ps1
