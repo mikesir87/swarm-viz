@@ -50,5 +50,5 @@ if [ "$ARCH" == "amd64" ]; then
   ./manifest-tool
 
   echo "Pushing manifest $image:$TRAVIS_TAG"
-  travis_retry deploy()
+  travis_retry deploy
 fi
