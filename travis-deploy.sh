@@ -47,7 +47,7 @@ if [ "$ARCH" == "amd64" ]; then
   wget https://github.com/estesp/manifest-tool/releases/download/v0.7.0/manifest-tool-linux-amd64
   mv manifest-tool-linux-amd64 manifest-tool
   chmod +x manifest-tool
-  ./manifest-tool
+  ./manifest-tool --version
 
   echo "Pushing manifest $image:$TRAVIS_TAG"
   travis_retry deploy
