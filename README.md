@@ -16,7 +16,7 @@ This project is serving as an updated version of the Swarm Visualizer found at h
 
 ## Running the visualizer
 
-###
+### Linux/Mac
 
 Running as container:
 
@@ -28,6 +28,18 @@ docker container run \
   mikesir87/swarm-viz
 ```
 
+### Windows Server 1709
+
+Run as Windows container:
+
+```
+docker container run `
+  --name swarm-viz `
+  -p 3000:3000 `
+  -u ContainerAdministrator `
+  -v //./pipe/docker_engine://./pipe/docker_engine `
+  mikesir87/swarm-viz
+```
 
 ## Development
 
@@ -39,4 +51,12 @@ docker-compose up -d
 
 The backend (api) is found in the `/api` directory and the frontend is found in the `/client` directory.
 
+## Build
 
+### Windows
+
+At the moment there is no official node image for Windows. Therefore apply another base image to build the app.
+
+```
+docker build -t mikesir87/swarm-viz --build-arg node=stefanscherer/node-windows:1709 .
+```
