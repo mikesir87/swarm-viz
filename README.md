@@ -30,11 +30,14 @@ docker container run \
 
 ### Windows Server 1709
 
+Run as Windows container:
+
 ```
-docker container run \
-  --name swarm-viz \
-  -p 3000:3000 \
-  -v //./pipe/docker_engine://./pipe/docker_engine \
+docker container run `
+  --name swarm-viz `
+  -p 3000:3000 `
+  -u ContainerAdministrator `
+  -v //./pipe/docker_engine://./pipe/docker_engine `
   mikesir87/swarm-viz
 ```
 
