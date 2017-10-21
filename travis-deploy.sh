@@ -2,8 +2,8 @@
 set -e
 
 image="mikesir87/swarm-viz"
-docker tag $image "$image:linux-$ARCH"
-docker push "$image:linux-$ARCH"
+docker tag $image "$image:linux-$ARCH-$TRAVIS_COMMIT"
+docker push "$image:linux-$ARCH-$TRAVIS_COMMIT"
 
 deploy() {
     sleep 15
@@ -11,7 +11,7 @@ deploy() {
     echo "Pushing manifest $image:latest"
     ./manifest-tool push from-args \
         --platforms linux/amd64,linux/s390x \
-        --template "$image:OS-ARCH" \
+        --template "$image:OS-ARCH-$TRAVIS_COMMIT" \
         --target "$image:latest"
 }
 
@@ -40,17 +40,17 @@ travis_retry() {
 if [ "$ARCH" == "amd64" ]; then
   set +e
   echo "Waiting for other images $image:linux-s390"
-  until docker run --rm stefanscherer/winspector "$image:linux-s390x"
+  until docker run --rm stefanscherer/winspector "$image:linux-s390x-$TRAVIS_COMMIT"
   do
     sleep 15
     echo "Trying again..."
   done
-#  echo "Waiting for other images $image:windows-amd64"
-#  until docker run --rm stefanscherer/winspector "$image:windows-amd64"
-#  do
-#    sleep 15
-#    echo "Trying again..."
-#  done
+  echo "Waiting for other images $image:windows-amd64"
+  until docker run --rm stefanscherer/winspector "$image:windows-amd64"
+  do
+    sleep 15
+    echo "Trying again..."
+  done
   set -e
 
   echo "Downloading docker client with manifest command"
