@@ -45,12 +45,13 @@ if [ "$ARCH" == "amd64" ]; then
     sleep 15
     echo "Trying again..."
   done
-  echo "Waiting for other images $image:windows-amd64"
-  until docker run --rm stefanscherer/winspector "$image:windows-amd64"
-  do
-    sleep 15
-    echo "Trying again..."
-  done
+
+#  echo "Waiting for other images $image:windows-amd64"
+#  until docker run --rm stefanscherer/winspector "$image:windows-amd64"
+#  do
+#    sleep 15
+#    echo "Trying again..."
+#  done
   set -e
 
   echo "Downloading docker client with manifest command"
