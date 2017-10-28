@@ -21,7 +21,7 @@ export function createWsHandler(wsApp) {
     const tasks = await dockerAgent.listTasks();
     let taskHash = crypto.createHash("md5").update(JSON.stringify(tasks)).digest("hex");
     if (taskHash === lastTaskHash)
-      return setTimeout(pollTasks, 500);
+      return;
     lastTaskHash = taskHash;
 
     const message = JSON.stringify({ type : "task.update", payload : tasks });
