@@ -63,11 +63,13 @@ docker build -t mikesir87/swarm-viz --build-arg node=stefanscherer/node-windows:
 
 ## Label Parsing
 
-Swarm-viz will read through parse labels beginning with `swarm-viz.` and display them in an "Extra Info" section.
+Swarm-viz will parse labels beginning with `swarm-viz.` and display them in an "Extra Info" section. It also supports templating.
 
 ### Link handling
 
 A label starting with `swarm-viz.link.` will use any remaining text in the identifier as a label, and will turn the value of the label into a clickable link. (Example: `swarm-viz.link.foo:http://google.com` will create the entry `foo : http://google.com`.)
+
+Templating is taken into account before link parsing, allowing for dynamic links.
 
 ### Templating
 
