@@ -5,10 +5,9 @@ import actions from "../../actions";
 
 
 function ParseLabelOutput(props){
-    console.log(props.imageName)
   var keyValue=props.keyValue.replace("${containerid}", props.containerId);
   keyValue=keyValue.replace("${imagename}", props.imageName);
-  keyValue=keyValue.replace("${stackname}", props.nameSpace);
+  keyValue=keyValue.replace("${stackname}", props.serviceName.slice(0,(props.serviceName.indexOf(props.imageName)-(props.serviceName.length + 1))));
   
   if(props.keyLabel.indexOf("swarm-viz.link.")===0){
     return(
@@ -42,7 +41,7 @@ class SwarmVizLabelParser extends React.Component {
                 <div key={key}><ParseLabelOutput keyLabel={key} keyValue={ service.Spec.Labels[key] } 
                     containerId={task.Status.ContainerStatus.ContainerID}
                     imageName={task.Spec.ContainerSpec.Image.slice(0,-(task.Spec.ContainerSpec.Image.length)+(task.Spec.ContainerSpec.Image.indexOf(":")))}
-                    nameSpace={service.Spec.Labels["com.docker.stack.namespace"]}/>
+                    serviceName={service.Spec.Name}/>
                 </div>
               ))}
           </span>
