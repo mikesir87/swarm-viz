@@ -5,6 +5,7 @@ import actions from "../../actions";
 
 
 function ParseLabelOutput(props){
+    console.log(props.imageName)
   var keyValue=props.keyValue.replace("${containerid}", props.containerId);
   keyValue=keyValue.replace("${imagename}", props.imageName);
   keyValue=keyValue.replace("${stackname}", props.nameSpace);
@@ -38,7 +39,10 @@ class SwarmVizLabelParser extends React.Component {
             <hr />
             <h3>Extra Info</h3>
               { toBeParsed.map((key) => (
-                <div key={key}><ParseLabelOutput keyLabel={key} keyValue={ service.Spec.Labels[key] } containerId={task.Status.ContainerStatus.ContainerID} imageName={service.Spec.Labels["com.docker.stack.image"]} nameSpace={service.Spec.Labels["com.docker.stack.namespace"]}/></div>
+                <div key={key}><ParseLabelOutput keyLabel={key} keyValue={ service.Spec.Labels[key] } 
+                    containerId={task.Status.ContainerStatus.ContainerID}
+                    imageName={task.Spec.ContainerSpec.Image.slice(0,-(task.Spec.ContainerSpec.Image.length)+(task.Spec.ContainerSpec.Image.indexOf(":")))}/>
+                </div>
               ))}
           </span>
         )}
