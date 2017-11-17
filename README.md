@@ -74,5 +74,5 @@ A label starting with `swarm-viz.link.` will use any remaining text in the ident
 Input          |          Output
 ---------------|-----------------
 ${containerid} | The container's unique id string.
-${imagename}   | The name of the image the container was made with. It is pulled from the label `com.docker.stack.image`.
-${stackname}   | The name of the stack the container is a part of. It is pulled from the label `com.docker.stack.namespace`.
+${imagename}   | The name of the image the container was made with. It is found by removing the extra info from the container name.
+${stackname}   | The name of the stack the container is a part of. It is found from subtracting the image name from the service name.
