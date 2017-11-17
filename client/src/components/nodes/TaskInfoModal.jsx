@@ -3,6 +3,7 @@ import Modal from "react-bootstrap/es/Modal";
 import Button from "react-bootstrap/es/Button";
 import {connect} from "react-redux";
 import FormRow from "./FormRow";
+import SwarmVizLabelParser from "./SwarmVizLabelParser";
 import ServiceDetails from "./ServiceDetails";
 import actions from "../../actions";
 
@@ -29,6 +30,8 @@ class TaskInfoModal extends React.Component {
               <FormRow label="Updated At">
                 { task.UpdatedAt }
               </FormRow>
+
+              <SwarmVizLabelParser taskId={this.props.taskId} serviceId={ task.ServiceID } />
 
               <hr />
               <h3>Service Details</h3>
