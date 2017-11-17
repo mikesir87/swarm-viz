@@ -17,6 +17,9 @@ class TaskInfoModal extends React.Component {
           </Modal.Header>
           <Modal.Body>
             <form className="form-horizontal">
+
+              <SwarmVizLabelParser taskId={this.props.taskId} serviceId={ task.ServiceID } />
+              
               <h3>Container Details</h3>
               <FormRow label="Container ID">
                 { task.Status.ContainerStatus.ContainerID }
@@ -30,8 +33,6 @@ class TaskInfoModal extends React.Component {
               <FormRow label="Updated At">
                 { task.UpdatedAt }
               </FormRow>
-
-              <SwarmVizLabelParser taskId={this.props.taskId} serviceId={ task.ServiceID } />
 
               <hr />
               <h3>Service Details</h3>

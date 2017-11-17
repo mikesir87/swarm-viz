@@ -35,8 +35,7 @@ class SwarmVizLabelParser extends React.Component {
       <div>
         { toBeParsed.length>= 1 && (
           <span>
-            <hr />
-            <h3>Extra Info</h3>
+            <h3>Parsed Info</h3>
               { toBeParsed.map((key) => (
                 <div key={key}><ParseLabelOutput keyLabel={key} keyValue={ service.Spec.Labels[key] } 
                     containerId={task.Status.ContainerStatus.ContainerID}
@@ -44,6 +43,7 @@ class SwarmVizLabelParser extends React.Component {
                     serviceName={service.Spec.Name}/>
                 </div>
               ))}
+            <hr />
           </span>
         )}
       </div>
