@@ -9,7 +9,7 @@ function ParseLabelOutput(props){
   keyValue=keyValue.replace("${imagename}", props.imageName);
   keyValue=keyValue.replace("${stackname}", props.nameSpace);
   
-  if(props.keyLabel.indexOf("swarm-viz.link.")>=0){
+  if(props.keyLabel.indexOf("swarm-viz.link.")===0){
     return(
       <FormRow label={props.keyLabel.slice(-((props.keyLabel.length-1)-(props.keyLabel.lastIndexOf("."))))}>
         <a href={keyValue}> {keyValue} </a>
