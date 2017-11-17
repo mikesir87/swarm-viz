@@ -29,7 +29,7 @@ class SwarmVizLabelParser extends React.Component {
   render(){
     const { task, service } = this.props;
     var toBeParsed = Object.keys(service.Spec.Labels).filter(function(label){
-      return label.indexOf("swarm-viz.")>=0;
+      return label.indexOf("swarm-viz.")===0;
     })
     return(
       <div>
