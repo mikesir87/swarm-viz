@@ -11,7 +11,7 @@ function ParseLabelOutput(props){
   
   if(props.keyLabel.indexOf("swarm-viz.link.")===0){
     return(
-      <FormRow label={props.keyLabel.slice(-((props.keyLabel.length-1)-(props.keyLabel.lastIndexOf("."))))}>
+      <FormRow label={props.keyLabel.slice(15)}>
         <a href={keyValue}> {keyValue} </a>
       </FormRow>
     )
