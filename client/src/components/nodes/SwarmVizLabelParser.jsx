@@ -41,7 +41,8 @@ class SwarmVizLabelParser extends React.Component {
               { toBeParsed.map((key) => (
                 <div key={key}><ParseLabelOutput keyLabel={key} keyValue={ service.Spec.Labels[key] } 
                     containerId={task.Status.ContainerStatus.ContainerID}
-                    imageName={task.Spec.ContainerSpec.Image.slice(0,-(task.Spec.ContainerSpec.Image.length)+(task.Spec.ContainerSpec.Image.indexOf(":")))}/>
+                    imageName={task.Spec.ContainerSpec.Image.slice(0,-(task.Spec.ContainerSpec.Image.length)+(task.Spec.ContainerSpec.Image.indexOf(":")))}
+                    nameSpace={service.Spec.Labels["com.docker.stack.namespace"]}/>
                 </div>
               ))}
           </span>
