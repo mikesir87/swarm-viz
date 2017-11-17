@@ -60,3 +60,19 @@ At the moment there is no official node image for Windows. Therefore apply anoth
 ```
 docker build -t mikesir87/swarm-viz --build-arg node=stefanscherer/node-windows:1709 .
 ```
+
+## Label Parsing
+
+Swarm-viz will read through parse labels beginning with `swarm-viz.` and display them in an "Extra Info" section.
+
+### Link handling
+
+A label starting with `swarm-viz.link.` will use any remaining text in the identifier as a label, and will turn the value of the label into a clickable link. (Example: `swarm-viz.link.foo:http://google.com` will create the entry `foo : http://google.com`.)
+
+### Templating
+
+Input          |          Output
+---------------|-----------------
+${containerid} | The container's unique id string.
+${imagename}   | The name of the image the container was made with. It is pulled from the label `com.docker.stack.image`.
+${stackname}   | The name of the stack the container is a part of. It is pulled from the label `com.docker.stack.namespace`.
