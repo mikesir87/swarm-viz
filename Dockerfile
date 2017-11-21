@@ -28,4 +28,4 @@ COPY --from=frontend /app/build /app/build
 FROM $target
 EXPOSE 3000
 COPY --from=proddeps /app /app
-CMD node /app/dist/index.js
+CMD ["node", "/app/dist/index.js"]
