@@ -27,3 +27,26 @@ app.get("/api/tasks", async(req, res) => {
 });
 
 app.listen(3000, () => console.log("App listening on port 3000"));
+
+//
+// need this in docker container to properly exit since node doesn't handle 
+// SIGINT/SIGTERM
+// Note, a more graceful way would be first server.close(), wait X seconds for 
+// connections to close (but websockets), then process.exit()
+//
+
+process
+  .on('SIGTERM', shutdown('SIGTERM')) // docker stop
+  .on('SIGINT', shutdown('SIGINT')) // ctrl-c in linux/mac
+  .on('uncaughtException', shutdown('uncaughtException'));
+
+// shut down server without waiting
+function shutdown(signal) {
+  return (err) => {
+    console.log(`${ signal }...`);
+    if (err) console.error(err.stack || err);
+    setTimeout(() => {
+      process.exit(err ? 1 : 0);
+    }, 0).unref();
+  };
+}
