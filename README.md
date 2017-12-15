@@ -1,7 +1,7 @@
 # Swarm Visualizer
 
-![Docker Stars](https://img.shields.io/docker/stars/mikesir87/aws-cli.svg)
-![Docker Pulls](https://img.shields.io/docker/pulls/mikesir87/aws-cli.svg)
+![Docker Stars](https://img.shields.io/docker/stars/mikesir87/swarm-viz.svg)
+![Docker Pulls](https://img.shields.io/docker/pulls/mikesir87/swarm-viz.svg)
 
 This project is serving as an updated version of the Swarm Visualizer found at https://github.com/dockersamples/docker-swarm-visualizer.
 
