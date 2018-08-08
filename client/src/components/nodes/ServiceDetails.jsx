@@ -14,7 +14,12 @@ class ServiceDetails extends React.Component {
             { service.Spec.Name }
           </FormRow>
           <FormRow label="Replicas">
-            { service.Spec.Mode.Replicated.Replicas }
+            { service.Spec.Mode.Replicated && (
+              service.Spec.Mode.Replicated.Replicas
+            )}
+            { service.Spec.Mode.Global && (
+              "Global"
+            )}
           </FormRow>
           { service.Spec.EndpointSpec.Ports && (
             <FormRow label="Ports">

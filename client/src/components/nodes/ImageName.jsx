@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const IMAGE_PARSE_REGEX = /^(.*?):(.*?)@sha256:(.*)/;
+const IMAGE_PARSE_REGEX = /^(.+):(.*?)(?:@sha256)?:(.*)/;
 
 class ImageName extends React.Component {
   render() {
