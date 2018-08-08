@@ -8,7 +8,7 @@ class TaskEntryDisplay extends React.Component {
   render() {
     const { task, onSelection } = this.props;
 
-    if (task.status.ContainerStatus === undefined)
+    if (task.Status.ContainerStatus === undefined)
       return null;
 
     const containerId = (task.Status.ContainerStatus.ContainerID) ?
