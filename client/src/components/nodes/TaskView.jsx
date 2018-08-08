@@ -59,6 +59,7 @@ const mapStateToProps = (state, props) => ({
   tasks : state.swarmState.tasks
             .filter((task) => task.DesiredState === "running")
             .filter((task) => task.NodeID === props.nodeId)
+            .filter((task) => task.spec.ContainerSpec !== undefined)
             .sort((a, b) => {
               if (a.Spec.ContainerSpec.Image !== b.Spec.ContainerSpec.Image)
                 return (a.Spec.ContainerSpec.Image > b.Spec.ContainerSpec.Image) ? 1 : -1;
