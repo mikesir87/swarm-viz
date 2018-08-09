@@ -1,6 +1,5 @@
 import * as React from "react";
 import ImageName from "./ImageName";
-import TaskInfoModal from "./TaskInfoModal";
 import ServiceName from "./ServiceName";
 
 class TaskEntryDisplay extends React.Component {
