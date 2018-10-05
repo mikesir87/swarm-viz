@@ -3,6 +3,7 @@ import Modal from "react-bootstrap/es/Modal";
 import Button from "react-bootstrap/es/Button";
 import {connect} from "react-redux";
 import FormRow from "./FormRow";
+import SwarmVizLabelParser from "./SwarmVizLabelParser";
 import ServiceDetails from "./ServiceDetails";
 import actions from "../../actions";
 
@@ -16,6 +17,9 @@ class TaskInfoModal extends React.Component {
           </Modal.Header>
           <Modal.Body>
             <form className="form-horizontal">
+
+              <SwarmVizLabelParser taskId={this.props.taskId} serviceId={ task.ServiceID } />
+              
               <h3>Container Details</h3>
               <FormRow label="Container ID">
                 { task.Status.ContainerStatus.ContainerID }
