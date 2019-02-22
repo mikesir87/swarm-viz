@@ -5,8 +5,15 @@ const IMAGE_PARSE_REGEX = /^(.+):(.*?)(?:@sha256)?:(.*)/;
 class ImageName extends React.Component {
   render() {
     const { imageSpec } = this.props;
-    const [ value, name, tag, hash ] = imageSpec.match(IMAGE_PARSE_REGEX);
-
+    const match = imageSpec.match(IMAGE_PARSE_REGEX);
+    let value, name, tag, hash;
+    if (match === null) {
+      name = imageSpec;
+      tag = "";
+    }
+    else {
+      [ value, name, tag, hash ] = match;
+    }
 
     return (
         <div className="image-spec-display">
