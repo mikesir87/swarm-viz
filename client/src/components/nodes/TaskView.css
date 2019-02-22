@@ -1,0 +1,8 @@
+.task-empty-text {
+    margin: 20px 0 30px;
+    display: block;
+}
+
+.task-empty-text.fade-enter, .task-empty-text.fade-leave {
+    display: none;
+}

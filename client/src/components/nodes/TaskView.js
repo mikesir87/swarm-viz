@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import actions from "../../actions";
 import TaskEntryDisplay from "./TaskEntryDisplay";
 import {CSSTransitionGroup} from "react-transition-group";
+import './TaskView.css';
 
 class TaskView extends React.Component {
   render() {
@@ -30,16 +31,18 @@ class TaskView extends React.Component {
   }
 
   renderTasks = (tasks) => {
-    if (tasks.length === 0) {
-      return (<div className="col-sm-10">
-        <div className="empty-text"><em>Shucks! It looks like there are no tasks for this node right now! Go and add some!</em></div>
-      </div>);
-    }
     return (
         <CSSTransitionGroup
                             transitionName="fade"
                             transitionEnterTimeout={2000}
                             transitionLeaveTimeout={2000}>
+
+          { tasks.length === 0 && (
+            <div className="col-sm-10 task-empty-text">
+              <em>Shucks! It looks like there are no tasks for this node right now! Go and add some!</em>
+            </div>
+          )}
+
           { tasks.map(this.renderTask) }
         </CSSTransitionGroup>
     );
