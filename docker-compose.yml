@@ -2,8 +2,8 @@ version: "3.1"
 
 services:
   proxy:
-    image: traefik:1.4-alpine
-    command: --web --docker --logLevel=DEBUG
+    image: traefik:1.7-alpine
+    command: --api --docker --logLevel=DEBUG
     ports:
       - 80:80
       - 8080:8080
@@ -11,7 +11,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
   api:
-    image: node:8.7-alpine
+    image: node:10-alpine
     command: sh -c "npm install && npm run dev"
     working_dir: /app
     volumes:
@@ -25,7 +25,7 @@ services:
       - "traefik.port=3000"
 
   client:
-    image: node:8.7-alpine
+    image: node:10-alpine
     command: sh -c "npm install && npm run dev"
     working_dir: /app
     volumes:
