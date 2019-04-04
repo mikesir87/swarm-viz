@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  visualizer:
+    image: mikesir87/swarm-viz
+    ports:
+      - 3000:3000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
