@@ -1,4 +1,8 @@
 
+let basePath = (window.location.pathname === '/') ? "" : window.location.pathname;
+if (basePath.charAt(basePath.length - 1) !== '/')
+  basePath += '/';
+
 class Api {
 
   get(url) {
@@ -6,7 +10,7 @@ class Api {
   }
 
   makeRequest(url, options = {}) {
-    const fullUrl = `/api${url}`;
+    const fullUrl = `${basePath}api${url}`;
     const headers = options.headers || new Headers();
     headers.append("Accept", "application/json");
     const fullOptions = Object.assign({}, options, { headers });

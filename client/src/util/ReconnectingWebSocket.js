@@ -6,7 +6,12 @@ class ReconnectingWebSocket {
   constructor(dispatch, url) {
     this.dispatch = dispatch;
     const protocol = (window.location.protocol === 'https:') ? "wss" : "ws";
-    this.url = url || `${protocol}://${window.location.host}/api/events`;
+
+    let path = window.location.pathname;
+    if (path.charAt(path.length - 1) !== '/')
+      path += '/'
+
+    this.url = url || `${protocol}://${window.location.host}${path}api/events`;
   }
 
   connect() {
